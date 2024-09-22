@@ -24,7 +24,7 @@ std::string RLE_unpack_string(const std::string& text) {
     std::istringstream iss(text);
     std::string temp;
     std::vector<std::string> chars;
-    while (std::getline(iss, temp)) {
+    while (std::getline(iss, temp, ' ')) {
         chars.push_back(temp);
     }
 
