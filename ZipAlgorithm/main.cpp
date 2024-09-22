@@ -122,16 +122,13 @@ int HandleFile(int argc, char** argv) {
 
 int main(int argc, char** argv)
 {
-    //if (argc == 2 && strcmp(argv[1], "--help") == 0)
-    //{
-    //    std::cout << "Commands: \n" << "--pack-string -ps Pack string" << "\n" << "--unpack-string -ups Unpack string" << std::endl;
-    //    std::cout << "--pack-file -pf Pack file (Absolute path only)" << "\n" << "--unpack-file -upf Unpack file (Absolute path only)" << std::endl;
-    //    return 0;
-    //}
+    if (argc == 2 && strcmp(argv[1], "--help") == 0)
+    {
+        std::cout << "Commands: \n" << "--pack-string -ps Pack string" << "\n" << "--unpack-string -ups Unpack string" << std::endl;
+        std::cout << "--pack-file -pf Pack file (Absolute path only)" << "\n" << "--unpack-file -upf Unpack file (Absolute path only)" << std::endl;
+        return 0;
+    }
 
-    //HandleStringPack(argc, argv);
-    //HandleFile(argc, argv);
-
-    RLE_file("C:\\Users\\User\\source\\repos\\otus\\ZipAlgorithm\\x64\\Debug\\e.jpeg");
-    RLE_unpack_file("C:\\Users\\User\\source\\repos\\otus\\ZipAlgorithm\\x64\\Debug\\e.jpeg_packed");
+    HandleStringPack(argc, argv);
+    HandleFile(argc, argv);
 }
