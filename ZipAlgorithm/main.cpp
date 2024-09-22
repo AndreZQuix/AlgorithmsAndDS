@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <vector>
 
 std::string RLE_string(const std::string& text) {
     std::string result;
@@ -12,7 +13,7 @@ std::string RLE_string(const std::string& text) {
         }
         else {
             count++;
-            result += std::to_string(count) + text[i];
+            result += std::to_string(count) + ' ' + text[i] + ' ';
             count = 0;
         }
     }
@@ -20,11 +21,19 @@ std::string RLE_string(const std::string& text) {
 };
 
 std::string RLE_unpack_string(const std::string& text) {
+    std::istringstream iss(text);
+    std::string temp;
+    std::vector<std::string> chars;
+    while (std::getline(iss, temp)) {
+        chars.push_back(temp);
+    }
+
     std::string result;
-    for (size_t i = 0; i < text.size(); i = i + 2) {
-        size_t count = text[i] - '0';
+    for (size_t i = 0; i < chars.size(); i += 2) {
+        std::cout << i << std::endl;
+        size_t count = std::stoi(chars[i]);
         for (size_t j = 0; j < count; j++) {
-            result += text[i + 1];
+            result += chars[i + 1];
         }
     }
     return result;
@@ -113,13 +122,16 @@ int HandleFile(int argc, char** argv) {
 
 int main(int argc, char** argv)
 {
-    if (argc == 2 && strcmp(argv[1], "--help") == 0)
-    {
-        std::cout << "Commands: \n" << "--pack-string -ps Pack string" << "\n" << "--unpack-string -ups Unpack string" << std::endl;
-        std::cout << "--pack-file -pf Pack file (Absolute path only)" << "\n" << "--unpack-file -upf Unpack file (Absolute path only)" << std::endl;
-        return 0;
-    }
+    //if (argc == 2 && strcmp(argv[1], "--help") == 0)
+    //{
+    //    std::cout << "Commands: \n" << "--pack-string -ps Pack string" << "\n" << "--unpack-string -ups Unpack string" << std::endl;
+    //    std::cout << "--pack-file -pf Pack file (Absolute path only)" << "\n" << "--unpack-file -upf Unpack file (Absolute path only)" << std::endl;
+    //    return 0;
+    //}
 
-    HandleStringPack(argc, argv);
-    HandleFile(argc, argv);
+    //HandleStringPack(argc, argv);
+    //HandleFile(argc, argv);
+
+    RLE_file("C:\\Users\\User\\source\\repos\\otus\\ZipAlgorithm\\x64\\Debug\\e.jpeg");
+    RLE_unpack_file("C:\\Users\\User\\source\\repos\\otus\\ZipAlgorithm\\x64\\Debug\\e.jpeg_packed");
 }
