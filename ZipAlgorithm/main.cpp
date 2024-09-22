@@ -30,7 +30,6 @@ std::string RLE_unpack_string(const std::string& text) {
 
     std::string result;
     for (size_t i = 0; i < chars.size(); i += 2) {
-        std::cout << i << std::endl;
         size_t count = std::stoi(chars[i]);
         for (size_t j = 0; j < count; j++) {
             result += chars[i + 1];
