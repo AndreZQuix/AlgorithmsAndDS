@@ -32,6 +32,8 @@ class Barn {
 	};
 
 public:
+	Barn() { };
+
 	Barn(size_t N) : N(N) {
 		map.resize(N);
 		for (size_t i = 0; i < N; i++) {
@@ -47,6 +49,26 @@ public:
 				map[i][j] = 0 + (rand() % (1 - 0 + 1)) == 1;
 			}
 		}
+	};
+
+	void generate_map() {
+		std::cin >> N;
+		map.resize(N);
+		for (size_t i = 0; i < map.size(); i++) {
+			for (size_t j = 0; j < map.size(); j++) {
+				map[i].resize(N);
+				size_t num;
+				std::cin >> num;
+				if (num != 0 && num != 1) {
+					std::cout << "incorrect data";
+					return;
+				}
+
+				map[i][j] = num;
+			}
+		}
+
+		
 	};
 
 	void print() {
