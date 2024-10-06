@@ -33,6 +33,6 @@ int main() {
 		}
 	}
 
-	int accuracy = (((double)positive - (double)false_positive) / (double)words_count) * 100;
+	double accuracy = (((double)positive - (double)false_positive) / (double)words_count) * 100;
 	std::cout << "Words count: " << words_count << " Positive: " << positive << " False positive: " << false_positive << " Accuracy: " << accuracy << "%" << std::endl;
 };
